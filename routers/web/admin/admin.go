@@ -159,6 +159,23 @@ func DashboardPost(ctx *context.Context) {
 	}
 }
 
+// MaintenancePost updates maintenance status
+func MaintenancePost(ctx *context.Context) {
+	form := web.GetForm(ctx).(*forms.AdminMaintenanceForm)
+	ctx.Data["Title"] = ctx.Tr("admin.dashboard")
+	ctx.Data["PageIsAdmin"] = true
+	ctx.Data["PageIsAdminDashboard"] = true
+
+	// TODO: handle timezones
+	startTime, _ := time.Parse("2006-01-02T15:04:05", form.Start)
+	endTime, _ := time.Parse("2006-01-02T15:04:05", form.End)
+
+	log.Error(fmt.Sprintf("[MAINTENANCE] active: %v | message: %v | start: %v | end: %v", form.Enabled, base.TruncateString(form.Message, 255), startTime, endTime))
+
+	ctx.Flash.Success(ctx.Tr("admin.dashboard.maintenance.settings_updated"))
+	ctx.Redirect(setting.AppSubURL + "/admin")
+}
+
 // SendTestMail send test mail to confirm mail service is OK
 func SendTestMail(ctx *context.Context) {
 	email := ctx.FormString("email")

@@ -75,7 +75,7 @@
 		<h4 class="ui top attached header">
 			{{.i18n.Tr "admin.dashboard.maintenance_mode"}}
 		</h4>
-		<form method="post" class="ui form" action="{{AppSubUrl}}/admin">
+		<form method="post" class="ui form" action="{{AppSubUrl}}/admin/maintenance">
 			{{.CsrfTokenHtml}}
 			<div class="ui attached segment">
 				<div class="ui field inline">
@@ -91,12 +91,12 @@
 				<div class="ui field">
 					<div class="ui fluid input">
 						<div>
-							<label for="maintenanceStart"><strong>{{.i18n.Tr "admin.dashboard.maintenance.start"}}</strong></label>
-							<input type="datetime-local" name="maintenanceStart" id="maintenanceStart"/>
+							<label for="start"><strong>{{.i18n.Tr "admin.dashboard.maintenance.start"}}</strong></label>
+							<input type="datetime-local" name="start" id="start" step="1"/>
 						</div>
 						<div>
-							<label for="maintenanceEnd"><strong>{{.i18n.Tr "admin.dashboard.maintenance.end"}}</strong></label>
-							<input type="datetime-local" name="maintenanceEnd" id="maintenanceEnd"/>
+							<label for="end"><strong>{{.i18n.Tr "admin.dashboard.maintenance.end"}}</strong></label>
+							<input type="datetime-local" name="end" id="end" step="1"/>
 						</div>
 					</div>
 				</div>

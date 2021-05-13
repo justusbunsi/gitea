@@ -66,6 +66,14 @@ type AdminDashboardForm struct {
 	From string
 }
 
+// AdminMaintenanceForm form for admin maintenance configuration
+type AdminMaintenanceForm struct {
+	Enabled bool `form:"maintenance_active"`
+	Message string `binding:"MaxSize(255)" form:"broadcast_banner"`
+	Start   string
+	End     string
+}
+
 // Validate validates form fields
 func (f *AdminDashboardForm) Validate(req *http.Request, errs binding.Errors) binding.Errors {
 	ctx := context.GetContext(req)
